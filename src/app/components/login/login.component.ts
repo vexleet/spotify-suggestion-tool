@@ -13,10 +13,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     const scopes = 'user-read-private user-read-email';
-    const redirect_uri = 'http://localhost:4200/home';
+    const redirectUri = 'http://localhost:4200/callback/';
 
     window.location.href = `https://accounts.spotify.com/authorize?client_id=${environment.client_id}` +
-     `&response_type=code&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirect_uri)}`;
+     `&response_type=token&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
   }
 
 }
