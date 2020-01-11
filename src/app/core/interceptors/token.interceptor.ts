@@ -18,11 +18,15 @@ export class TokenInterceptor implements HttpInterceptor {
         private spotifyApiService: SpotifyApiService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // req = req.clone({
-        //     setHeaders: {
-        //         Authorization: `Bearer `,
-        //     }
-        // });
+        const token = this.spotifyApiService.token;
+
+        if(req.url.startsWith('https://api.spotify.com/v1')){
+            req = req.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+        }
 
         return next.handle(req)
             .pipe(catchError((err: HttpErrorResponse) => {
