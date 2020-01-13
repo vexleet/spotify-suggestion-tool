@@ -12,6 +12,9 @@ import { map } from 'rxjs/operators';
 export class CallbackComponent implements OnInit {
   genres: string[] = [];
   seedsArtists: string[] = [];
+  userId: string = '';
+  playlistId: string = '';
+  tracksForPlaylist: object[] = [];
 
   constructor(
     private route: ActivatedRoute, 
@@ -58,14 +61,40 @@ export class CallbackComponent implements OnInit {
 
         this.generateSeed();
       });
-    }
+  }
 
-    generateSeed(){
-      console.log(this.genres);
-      this.spotifyApiService.recommendationsBasedOnSeeds(this.genres, this.seedsArtists)
-        .subscribe((data) => {
-          console.log(data);
-        })
-    }
+  generateSeed(){
+    this.spotifyApiService.recommendationsBasedOnSeeds(this.genres, this.seedsArtists)
+      .subscribe((data) => {
+        this.tracksForPlaylist = data['tracks'];
+
+        this.getUserId();
+      });
+  }
+
+  getUserId(){
+    this.spotifyApiService.getUserId()
+      .subscribe((data) => {
+        this.userId = data['id'];
+
+        this.createPlaylist();
+      });
+  }
+
+  createPlaylist(){
+    this.spotifyApiService.createPlaylist(this.userId)
+      .subscribe((data) => {
+        this.playlistId = data['id'];
+
+        this.addTracksToPlaylist();
+      });
+  }
+
+  addTracksToPlaylist(){
+    this.spotifyApiService.addTracksToPlaylist(this.playlistId, this.tracksForPlaylist.map((track) => track['uri']))
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 
 }
