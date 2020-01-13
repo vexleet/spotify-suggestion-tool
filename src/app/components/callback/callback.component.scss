@@ -1,0 +1,20 @@
+:host-context(.theme-light) h2 {
+    background-color: #eef;
+  }
+
+div{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80%;
+    height: 200px;
+    text-align: center;
+
+    p{
+        font-size: 1.5em;
+    }
+}
+

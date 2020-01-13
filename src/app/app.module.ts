@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RouterModule } from '@angular/router';
 import { CallbackComponent } from './components/callback/callback.component';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
     MaterialModule,
     RouterModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [
     {

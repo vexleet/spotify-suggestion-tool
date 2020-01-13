@@ -1,0 +1,35 @@
+.playlist-image{
+    width: 200px;
+    height: 200px;
+    margin: 1.5em auto;
+    display: block;
+    border-radius: 50%;
+}
+
+.play-button{
+    margin: 0 auto;
+    display: block;
+    padding: 0.2em 2em;
+}
+
+.track{
+    width: 90%;
+    margin: 0 auto;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .artist-name{
+        font-size: 0.8em;
+        color: rgb(145, 149, 153);
+    }
+
+    .buttons{
+        font-size: 18px;
+        
+        .heart{
+            margin-right: 10px;
+        }
+    }
+}

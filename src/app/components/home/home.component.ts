@@ -1,5 +1,10 @@
+import { SpotifyApiService } from './../../core/spotify-api.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+
+
 
 @Component({
   selector: 'app-home',
@@ -7,10 +12,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  data: object = {};
+  faHeart = faHeart;
+  faMinusCircle = faMinusCircle;
+  
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private spotifyApiService: SpotifyApiService) { }
 
   ngOnInit() {
+    const playlistId = this.route.snapshot.queryParams['playlist_id'];
+    this.spotifyApiService.token = this.route.snapshot.queryParams['token'];
+
+    this.spotifyApiService.getPlaylist(playlistId)
+      .subscribe((data) => {
+        this.data = data;
+        console.log(data);
+      });
   }
 
 }

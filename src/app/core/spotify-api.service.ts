@@ -38,4 +38,8 @@ export class SpotifyApiService {
   addTracksToPlaylist(playlistId: string, tracks: string[]){
     return this.http.post(`${this.baseUrl}/playlists/${playlistId}/tracks?uris=${tracks.map(encodeURIComponent).join(',')}`, {})
   }
+
+  getPlaylist(playlistId: string){
+    return this.http.get(`${this.baseUrl}/playlists/${playlistId}`);
+  }
 }

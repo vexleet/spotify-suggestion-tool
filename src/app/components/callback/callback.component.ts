@@ -1,7 +1,7 @@
 import { SpotifyApiService } from './../../core/spotify-api.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {  ActivatedRoute } from '@angular/router';
+import {  ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -17,7 +17,8 @@ export class CallbackComponent implements OnInit {
   tracksForPlaylist: object[] = [];
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
+    private router: Router,
     private spotifyApiService: SpotifyApiService) { }
 
   ngOnInit() {
@@ -35,8 +36,7 @@ export class CallbackComponent implements OnInit {
       });
   }
 
-
-  async getUserTopArtistsData(){
+  getUserTopArtistsData(){
     this.spotifyApiService.getUserTopArtists()
       .subscribe((data) => {
         let allGenres: string[] = [];
@@ -91,9 +91,19 @@ export class CallbackComponent implements OnInit {
   }
 
   addTracksToPlaylist(){
-    this.spotifyApiService.addTracksToPlaylist(this.playlistId, this.tracksForPlaylist.map((track) => track['uri']))
+    this.spotifyApiService
+      .addTracksToPlaylist(
+        this.playlistId, 
+        this.tracksForPlaylist
+        .map((track) => track['uri']))
       .subscribe((data) => {
-        console.log(data);
+        this.router
+          .navigate(['home'],
+          {
+            queryParams: {
+            playlist_id: this.playlistId, 
+            token: this.spotifyApiService.token
+          }});
       });
   }
 
