@@ -1,9 +1,8 @@
 import { SpotifyApiService } from './../../core/spotify-api.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
-
 
 
 @Component({
@@ -17,7 +16,6 @@ export class HomeComponent implements OnInit {
   faMinusCircle = faMinusCircle;
   
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private spotifyApiService: SpotifyApiService) { }
 
@@ -28,6 +26,13 @@ export class HomeComponent implements OnInit {
     this.spotifyApiService.getPlaylist(playlistId)
       .subscribe((data) => {
         this.data = data;
+        console.log(data);
+      });
+  }
+
+  saveTrack(trackId: string){
+    this.spotifyApiService.saveTrack(trackId)
+      .subscribe((data) => {
         console.log(data);
       });
   }

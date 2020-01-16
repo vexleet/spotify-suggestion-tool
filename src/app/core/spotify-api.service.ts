@@ -42,4 +42,8 @@ export class SpotifyApiService {
   getPlaylist(playlistId: string){
     return this.http.get(`${this.baseUrl}/playlists/${playlistId}`);
   }
+
+  saveTrack(trackId: string){
+    return this.http.put(`${this.baseUrl}/me/tracks?ids=${trackId}`, {});
+  }
 }

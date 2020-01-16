@@ -25,11 +25,39 @@
         color: rgb(145, 149, 153);
     }
 
+    .track-info{
+        width: 75%;
+    }
+
     .buttons{
         font-size: 18px;
         
         .heart{
             margin-right: 10px;
         }
+    }
+}
+
+.save-notification{
+    position: fixed;
+    bottom: 2%;
+    display: fixed;
+    background: #fff;
+    padding-left: 1em;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    animation: test 1s ease-in-out;
+    height: 0;
+}
+
+@keyframes test {
+    0% {
+        height: 0;
+    }
+
+    50%{
+        height: 52px;
     }
 }

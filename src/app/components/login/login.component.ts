@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    const scopes = 'user-read-private user-read-email user-top-read playlist-modify-public playlist-modify-private';
+    const scopes = 'user-read-private user-read-email user-top-read playlist-modify-public playlist-modify-private user-library-modify';
     const redirectUri = 'http://localhost:4200/callback/';
 
     window.location.href = `https://accounts.spotify.com/authorize?client_id=${environment.client_id}` +
