@@ -6,15 +6,15 @@
 </div>
 <div mat-dialog-content>
   <mat-list>
-    <mat-list-item>
+    <mat-list-item (click)="addPlaylist()">
       <fa-icon [icon]="faPlus"></fa-icon>
       <p>Add to Playlist</p>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item (click)="viewAlbum()">
       <fa-icon [icon]="faRecordVinyl"></fa-icon>
       <p>View Album</p>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item (click)="viewArtist()">
       <fa-icon [icon]="faMusic"></fa-icon>
       <p>View Artist</p>
     </mat-list-item>

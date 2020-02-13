@@ -60,10 +60,6 @@ export class HomeComponent implements OnInit {
       data: track,
       panelClass: "custom-modalbox"
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("The dialog was closed");
-    });
   }
 }
 
@@ -79,8 +75,16 @@ export class InfoDialog {
   constructor(
     public dialogRef: MatDialogRef<InfoDialog>,
     @Inject(MAT_DIALOG_DATA) public track
-  ) {
-    console.log(track);
+  ) {}
+
+  addPlaylist() {}
+
+  viewAlbum() {
+    window.open(this.track.track.album.external_urls.spotify, "_blank");
+  }
+
+  viewArtist() {
+    window.open(this.track.track.artists[0].external_urls.spotify, "_blank");
   }
 
   onNoClick(): void {
