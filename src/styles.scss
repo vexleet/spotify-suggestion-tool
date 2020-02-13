@@ -25,3 +25,8 @@ body {
     rgba(27, 29, 32, 1) 100%
   );
 }
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #fff;
+}

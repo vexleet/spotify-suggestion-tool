@@ -30,6 +30,7 @@ export interface IPreview {
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
+  hasLoaded: boolean = false;
   data: object = {};
   faHeart = faHeart;
   faMinusCircle = faMinusCircle;
@@ -52,7 +53,7 @@ export class HomeComponent implements OnInit {
 
     this.spotifyApiService.getPlaylist(playlistId).subscribe(data => {
       this.data = data;
-      console.log(data);
+      this.hasLoaded = true;
     });
   }
 

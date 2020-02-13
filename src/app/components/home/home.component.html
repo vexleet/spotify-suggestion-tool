@@ -1,51 +1,57 @@
-<img src="{{ data.images[1].url }}" alt="" class="playlist-image" />
-
-<button class="play-button" mat-raised-button (click)="navigateToPlaylist()">
-  Play
-</button>
-
-<div class="track" *ngFor="let track of data.tracks.items">
-  <div class="track-image">
-    <img
-      src="{{ track.track.album.images[2].url }}"
-      alt=""
-      (click)="playSong(track.track)"
-    />
-    <fa-icon
-      [icon]="faPlay"
-      class="preview-button"
-      (click)="playSong(track.track)"
-      *ngIf="track.track.id !== currentPreview.songId"
-    ></fa-icon>
-    <fa-icon
-      [icon]="faPause"
-      class="preview-button"
-      (click)="playSong(track.track)"
-      *ngIf="
-        !currentPreview.isPaused && track.track.id === currentPreview.songId
-      "
-    ></fa-icon>
-  </div>
-
-  <div class="track-info">
-    <p>{{ track.track.name }}</p>
-    <p class="artist-name">{{ track.track.artists[0].name }}</p>
-  </div>
-
-  <div class="buttons">
-    <fa-icon
-      [icon]="faHeart"
-      class="icon"
-      (click)="saveTrack(track.track.id)"
-    ></fa-icon>
-    <fa-icon
-      [icon]="faEllipsisV"
-      class="icon"
-      (click)="openInfo(track)"
-    ></fa-icon>
-  </div>
+<div *ngIf="!hasLoaded">
+  <mat-spinner></mat-spinner>
 </div>
 
-<div class="save-notification">
-  <p>Track added to Library</p>
+<div *ngIf="hasLoaded">
+  <img src="{{ data.images[1].url }}" alt="" class="playlist-image" />
+
+  <button class="play-button" mat-raised-button (click)="navigateToPlaylist()">
+    Play
+  </button>
+
+  <div class="track" *ngFor="let track of data.tracks.items">
+    <div class="track-image">
+      <img
+        src="{{ track.track.album.images[2].url }}"
+        alt=""
+        (click)="playSong(track.track)"
+      />
+      <fa-icon
+        [icon]="faPlay"
+        class="preview-button"
+        (click)="playSong(track.track)"
+        *ngIf="track.track.id !== currentPreview.songId"
+      ></fa-icon>
+      <fa-icon
+        [icon]="faPause"
+        class="preview-button"
+        (click)="playSong(track.track)"
+        *ngIf="
+          !currentPreview.isPaused && track.track.id === currentPreview.songId
+        "
+      ></fa-icon>
+    </div>
+
+    <div class="track-info">
+      <p>{{ track.track.name }}</p>
+      <p class="artist-name">{{ track.track.artists[0].name }}</p>
+    </div>
+
+    <div class="buttons">
+      <fa-icon
+        [icon]="faHeart"
+        class="icon"
+        (click)="saveTrack(track.track.id)"
+      ></fa-icon>
+      <fa-icon
+        [icon]="faEllipsisV"
+        class="icon"
+        (click)="openInfo(track)"
+      ></fa-icon>
+    </div>
+  </div>
+
+  <div class="save-notification">
+    <p>Track added to Library</p>
+  </div>
 </div>
