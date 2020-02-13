@@ -35,7 +35,23 @@
     color: rgb(145, 149, 153);
   }
 
-  .track-info {
+  &-image {
+    position: relative;
+
+    img {
+      opacity: 0.5;
+    }
+
+    .preview-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      font-size: 1.5em;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &-info {
     width: 75%;
     margin: 0 1em;
   }

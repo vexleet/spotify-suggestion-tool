@@ -6,7 +6,25 @@
 
 <div class="track" *ngFor="let track of data.tracks.items">
   <div class="track-image">
-    <img src="{{ track.track.album.images[2].url }}" alt="" />
+    <img
+      src="{{ track.track.album.images[2].url }}"
+      alt=""
+      (click)="playSong(track.track)"
+    />
+    <fa-icon
+      [icon]="faPlay"
+      class="preview-button"
+      (click)="playSong(track.track)"
+      *ngIf="track.track.id !== currentPreview.songId"
+    ></fa-icon>
+    <fa-icon
+      [icon]="faPause"
+      class="preview-button"
+      (click)="playSong(track.track)"
+      *ngIf="
+        !currentPreview.isPaused && track.track.id === currentPreview.songId
+      "
+    ></fa-icon>
   </div>
 
   <div class="track-info">

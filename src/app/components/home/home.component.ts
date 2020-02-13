@@ -7,7 +7,9 @@ import {
   faEllipsisV,
   faPlus,
   faMusic,
-  faRecordVinyl
+  faRecordVinyl,
+  faPlay,
+  faPause
 } from "@fortawesome/free-solid-svg-icons";
 import { ToastrService } from "ngx-toastr";
 import {
@@ -15,6 +17,12 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from "@angular/material/dialog";
+import { Howl, Howler } from "howler";
+
+export interface IPreview {
+  isPaused: boolean;
+  songId: string;
+}
 
 @Component({
   selector: "app-home",
@@ -26,6 +34,10 @@ export class HomeComponent implements OnInit {
   faHeart = faHeart;
   faMinusCircle = faMinusCircle;
   faEllipsisV = faEllipsisV;
+  faPlay = faPlay;
+  faPause = faPause;
+  currentPreview: IPreview = { isPaused: true, songId: "" };
+  sound;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +72,26 @@ export class HomeComponent implements OnInit {
       data: track,
       panelClass: "custom-modalbox"
     });
+  }
+
+  playSong(track) {
+    if (track.id === this.currentPreview.songId) {
+      this.sound.stop();
+      this.currentPreview = { isPaused: true, songId: "" };
+      return;
+    } else if (this.currentPreview.songId !== "") {
+      this.sound.stop();
+      this.currentPreview = { isPaused: true, songId: "" };
+    }
+
+    this.sound = new Howl({
+      src: [track.preview_url],
+      html5: true
+    });
+
+    this.sound.play();
+
+    this.currentPreview = { isPaused: false, songId: track.id };
   }
 }
 
