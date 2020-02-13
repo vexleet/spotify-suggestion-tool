@@ -1,8 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { 
-    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: rgb(49,54,59);
-    background: linear-gradient(rgba(49,54,59,1) 0%, rgba(38,41,45,1) 42%, rgba(28,30,34,1) 80%) fixed;
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: rgb(49, 54, 59);
+  background: linear-gradient(
+      rgba(49, 54, 59, 1) 0%,
+      rgba(38, 41, 45, 1) 42%,
+      rgba(28, 30, 34, 1) 80%
+    )
+    fixed;
+}
+
+.custom-modalbox mat-dialog-container {
+  background: rgb(52, 57, 62);
+  background: linear-gradient(
+    180deg,
+    rgba(52, 57, 62, 1) 0%,
+    rgba(38, 41, 45, 1) 52%,
+    rgba(27, 29, 32, 1) 100%
+  );
 }

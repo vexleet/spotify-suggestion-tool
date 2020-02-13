@@ -1,16 +1,33 @@
-<img src="{{data.images[1].url}}" alt="" class="playlist-image">
+<img src="{{ data.images[1].url }}" alt="" class="playlist-image" />
+
+<button class="play-button" mat-raised-button (click)="navigateToPlaylist()">
+  Play
+</button>
 
 <div class="track" *ngFor="let track of data.tracks.items">
-    <div class="track-info">
-        <p>{{track.track.name}}</p>
-        <p class="artist-name">{{track.track.artists[0].name}}</p>
-    </div>
+  <div class="track-image">
+    <img src="{{ track.track.album.images[2].url }}" alt="" />
+  </div>
 
-    <div class="buttons">
-        <fa-icon [icon]="faHeart" class="heart" (click)="saveTrack(track.track.id)"></fa-icon>
-    </div>
+  <div class="track-info">
+    <p>{{ track.track.name }}</p>
+    <p class="artist-name">{{ track.track.artists[0].name }}</p>
+  </div>
+
+  <div class="buttons">
+    <fa-icon
+      [icon]="faHeart"
+      class="icon"
+      (click)="saveTrack(track.track.id)"
+    ></fa-icon>
+    <fa-icon
+      [icon]="faEllipsisV"
+      class="icon"
+      (click)="openInfo(track)"
+    ></fa-icon>
+  </div>
 </div>
 
 <div class="save-notification">
-    <p>Track added to Library</p>
+  <p>Track added to Library</p>
 </div>

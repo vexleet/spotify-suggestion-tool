@@ -1,63 +1,65 @@
-.playlist-image{
-    width: 200px;
-    height: 200px;
-    margin: 1.5em auto;
-    display: block;
-    border-radius: 50%;
+.playlist-image {
+  width: 200px;
+  height: 200px;
+  margin: 1.5em auto;
+  display: block;
+  border-radius: 50%;
+  border: 5px solid #17191c;
 }
 
-.play-button{
-    margin: 0 auto;
-    display: block;
-    padding: 0.2em 2em;
+.play-button {
+  margin: 0 auto;
+  display: block;
+  padding: 0.2em 2em;
+  color: #fff;
+  margin-bottom: 1em;
+  background: rgb(201, 40, 18);
+  background: linear-gradient(
+    139deg,
+    rgba(201, 40, 18, 1) 0%,
+    rgba(235, 67, 20, 1) 52%,
+    rgba(227, 83, 10, 1) 100%
+  );
 }
 
-.track{
-    width: 90%;
-    margin: 0 auto;
-    color: #fff;
+.track {
+  width: 90%;
+  margin: 0 auto;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .artist-name {
+    font-size: 0.8em;
+    color: rgb(145, 149, 153);
+  }
+
+  .track-info {
+    width: 75%;
+    margin: 0 1em;
+  }
+
+  .buttons {
+    font-size: 18px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    .artist-name{
-        font-size: 0.8em;
-        color: rgb(145, 149, 153);
+    .icon:first-of-type {
+      margin-right: 0.5em;
     }
-
-    .track-info{
-        width: 75%;
-    }
-
-    .buttons{
-        font-size: 18px;
-        
-        .heart{
-            margin-right: 10px;
-        }
-    }
+  }
 }
 
-.save-notification{
-    position: fixed;
-    bottom: 2%;
-    display: fixed;
-    background: #fff;
-    padding-left: 1em;
-    width: 80%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 5px;
-    animation: test 1s ease-in-out;
-    height: 0;
-}
-
-@keyframes test {
-    0% {
-        height: 0;
-    }
-
-    50%{
-        height: 52px;
-    }
+.save-notification {
+  position: fixed;
+  bottom: 2%;
+  display: fixed;
+  background: #fff;
+  padding-left: 1em;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  animation: test 1s ease-in-out;
+  height: 0;
 }

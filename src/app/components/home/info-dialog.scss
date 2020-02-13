@@ -1,0 +1,34 @@
+.mat-dialog-title {
+  text-align: center;
+  color: #fff;
+  img {
+    width: 75px;
+    height: 75px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .artist-name {
+    font-size: 0.7em;
+    color: rgb(145, 149, 153);
+  }
+}
+
+.mat-list {
+  .mat-list-item {
+    p {
+      color: #fff;
+    }
+    .ng-fa-icon {
+      margin-right: 0.5em;
+      color: #fff;
+    }
+  }
+}
+
+button {
+  margin: 0 auto;
+  color: #fff;
+}

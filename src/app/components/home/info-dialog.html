@@ -1,0 +1,25 @@
+<div mat-dialog-title>
+  <img src="{{track.track.album.images[2].url}}" alt="" />
+
+  <p>{{track.track.name}}</p>
+  <p class="artist-name">{{ track.track.artists[0].name }}</p>
+</div>
+<div mat-dialog-content>
+  <mat-list>
+    <mat-list-item>
+      <fa-icon [icon]="faPlus"></fa-icon>
+      <p>Add to Playlist</p>
+    </mat-list-item>
+    <mat-list-item>
+      <fa-icon [icon]="faRecordVinyl"></fa-icon>
+      <p>View Album</p>
+    </mat-list-item>
+    <mat-list-item>
+      <fa-icon [icon]="faMusic"></fa-icon>
+      <p>View Artist</p>
+    </mat-list-item>
+  </mat-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>
