@@ -1,0 +1,19 @@
+<div *ngIf="hasLoaded">
+  <div mat-dialog-content>
+    <mat-list>
+      <mat-list-item
+        *ngFor="let playlist of playlists"
+        (click)="addTrackToPlaylist(playlist.id)"
+      >
+        <img
+          src="{{playlist.images[playlist.images.length - 1]['url']}}"
+          alt=""
+        />
+        <p>{{playlist.name}}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+  </div>
+</div>

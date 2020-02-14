@@ -6,7 +6,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HomeComponent, InfoDialog } from "./components/home/home.component";
+import {
+  HomeComponent,
+  InfoDialog,
+  AddPlaylistModal
+} from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
 import { RouterModule } from "@angular/router";
 import { CallbackComponent } from "./components/callback/callback.component";
@@ -20,9 +24,10 @@ import { ToastrModule } from "ngx-toastr";
     HomeComponent,
     LoginComponent,
     CallbackComponent,
-    InfoDialog
+    InfoDialog,
+    AddPlaylistModal
   ],
-  entryComponents: [InfoDialog],
+  entryComponents: [InfoDialog, AddPlaylistModal],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
   }
 
   playSong(track) {
-    let that = this;
+    const that = this;
 
     if (track.preview_url === null) {
       this.toastr.error("This song does not have preview.");
@@ -128,9 +128,47 @@ export class HomeComponent implements OnInit {
 }
 
 @Component({
+  selector: "add-playlist",
+  templateUrl: "./add-playlist/add-playlist.html",
+  styleUrls: ["./add-playlist/add-playlist.scss"]
+})
+export class AddPlaylistModal {
+  playlists: any;
+  hasLoaded = false;
+
+  constructor(
+    public dialogRef: MatDialogRef<AddPlaylistModal>,
+    @Inject(MAT_DIALOG_DATA) public track,
+    private spotifyApiService: SpotifyApiService,
+    private toastr: ToastrService
+  ) {}
+
+  ngOnInit() {
+    console.log(this.track);
+    this.spotifyApiService.getUserPlaylists().subscribe((data: any) => {
+      this.playlists = data.items;
+      this.hasLoaded = true;
+    });
+  }
+
+  addTrackToPlaylist(playlistId: string) {
+    this.spotifyApiService
+      .saveTrackToPlaylist(playlistId, this.track.uri)
+      .subscribe(data => {
+        this.toastr.success("Track added to playlist");
+        this.onNoClick();
+      });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
   selector: "info-dialog",
-  templateUrl: "info-dialog.html",
-  styleUrls: ["./info-dialog.scss"]
+  templateUrl: "./info-dialog/info-dialog.html",
+  styleUrls: ["./info-dialog/info-dialog.scss"]
 })
 export class InfoDialog {
   faPlus = faPlus;
@@ -138,10 +176,19 @@ export class InfoDialog {
   faMusic = faMusic;
   constructor(
     public dialogRef: MatDialogRef<InfoDialog>,
+    private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public track
   ) {}
 
-  addPlaylist() {}
+  addPlaylist(track) {
+    this.dialogRef.close();
+
+    const dialogRef = this.dialog.open(AddPlaylistModal, {
+      width: "250px",
+      data: track,
+      panelClass: "custom-modalbox"
+    });
+  }
 
   viewAlbum() {
     window.open(this.track.track.album.external_urls.spotify, "_blank");

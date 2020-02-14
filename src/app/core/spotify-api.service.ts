@@ -64,4 +64,15 @@ export class SpotifyApiService {
   removeTrack(trackId: string) {
     return this.http.delete(`${this.baseUrl}/me/tracks?ids=${trackId}`);
   }
+
+  getUserPlaylists() {
+    return this.http.get(`${this.baseUrl}/me/playlists?limit=28`);
+  }
+
+  saveTrackToPlaylist(playlistId: string, trackUri: string) {
+    return this.http.post(
+      `${this.baseUrl}/playlists/${playlistId}/tracks?uris=${trackUri}`,
+      {}
+    );
+  }
 }
