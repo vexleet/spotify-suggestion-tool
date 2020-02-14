@@ -20,7 +20,6 @@
         [icon]="faPlay"
         class="preview-button"
         (click)="playSong(track.track)"
-        *ngIf="track.track.id !== currentPreview.songId"
       ></fa-icon>
       <fa-icon
         [icon]="faPause"
@@ -42,6 +41,13 @@
         [icon]="faHeart"
         class="icon"
         (click)="saveTrack(track.track.id)"
+        *ngIf="!track.isSaved"
+      ></fa-icon>
+      <fa-icon
+        [icon]="faBan"
+        class="icon"
+        (click)="removeTrack(track.track.id)"
+        *ngIf="track.isSaved"
       ></fa-icon>
       <fa-icon
         [icon]="faEllipsisV"

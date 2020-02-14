@@ -9,7 +9,8 @@ import {
   faMusic,
   faRecordVinyl,
   faPlay,
-  faPause
+  faPause,
+  faBan
 } from "@fortawesome/free-solid-svg-icons";
 import { ToastrService } from "ngx-toastr";
 import {
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit {
   faEllipsisV = faEllipsisV;
   faPlay = faPlay;
   faPause = faPause;
+  faBan = faBan;
   currentPreview: IPreview = { isPaused: true, songId: "" };
   sound;
 
@@ -54,12 +56,21 @@ export class HomeComponent implements OnInit {
     this.spotifyApiService.getPlaylist(playlistId).subscribe(data => {
       this.data = data;
       this.hasLoaded = true;
+      this.getUserSavedTracks();
     });
   }
 
   saveTrack(trackId: string) {
     this.spotifyApiService.saveTrack(trackId).subscribe(data => {
+      this.getUserSavedTracks();
       this.toastr.success("Added track to favs");
+    });
+  }
+
+  removeTrack(trackId: string) {
+    this.spotifyApiService.removeTrack(trackId).subscribe(data => {
+      this.getUserSavedTracks();
+      this.toastr.success("Removed track from favs");
     });
   }
 
@@ -93,6 +104,16 @@ export class HomeComponent implements OnInit {
     this.sound.play();
 
     this.currentPreview = { isPaused: false, songId: track.id };
+  }
+
+  getUserSavedTracks() {
+    const ids = this.data["tracks"].items.map(track => track.track.id);
+
+    this.spotifyApiService.getUserSavedTracks(ids).subscribe(res => {
+      this.data["tracks"].items.forEach(
+        (track, index) => (track["isSaved"] = res[index])
+      );
+    });
   }
 }
 
