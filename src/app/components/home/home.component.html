@@ -20,6 +20,7 @@
         [icon]="faPlay"
         class="preview-button"
         (click)="playSong(track.track)"
+        *ngIf="track.track.id !== currentPreview.songId"
       ></fa-icon>
       <fa-icon
         [icon]="faPause"

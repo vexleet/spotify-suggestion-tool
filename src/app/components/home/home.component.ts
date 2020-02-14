@@ -87,6 +87,13 @@ export class HomeComponent implements OnInit {
   }
 
   playSong(track) {
+    let that = this;
+
+    if (track.preview_url === null) {
+      this.toastr.error("This song does not have preview.");
+      return;
+    }
+
     if (track.id === this.currentPreview.songId) {
       this.sound.stop();
       this.currentPreview = { isPaused: true, songId: "" };
@@ -98,7 +105,10 @@ export class HomeComponent implements OnInit {
 
     this.sound = new Howl({
       src: [track.preview_url],
-      html5: true
+      html5: true,
+      onend: function() {
+        that.currentPreview = { isPaused: true, songId: "" };
+      }
     });
 
     this.sound.play();
